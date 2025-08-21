@@ -1,0 +1,40 @@
+{
+  "name": "@workspace/common",
+  "type": "module",
+  "main": "./lib/index.js",
+  "module": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./lib/index.js",
+      "types": "./lib/index.d.ts"
+    }
+  },
+  "files": [
+    "./lib"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --dts",
+    "test": "jest",
+    "lint": "eslint . --fix",
+    "lint:check": "eslint .",
+    "format": "prettier . --write --config ../../.prettierrc.json --ignore-path ../../.prettierignore",
+    "format:check": "prettier . --check --config ../../.prettierrc.json --ignore-path ../../.prettierignore"
+  },
+  "dependencies": {
+    "@fastify/multipart": "catalog:api",
+    "@sinclair/typebox": "catalog:api",
+    "bcryptjs": "catalog:auth",
+    "fastify": "catalog:api",
+    "jose": "^5.2.0",
+    "knex": "catalog:knex",
+    "neverthrow": "catalog:",
+    "pino": "catalog:pino",
+    "pino-pretty": "catalog:pino"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "catalog:auth",
+    "@types/node": "catalog:",
+    "typescript": "catalog:"
+  }
+}

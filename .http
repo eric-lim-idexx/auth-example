@@ -1,0 +1,44 @@
+@realm=auth_example
+@service_a_client_id=service-a
+@service_a_client_secret=9PJyfNUrzLEdF3iKHihyX3FeZPVvWC7n
+@service_b_client_id=service-b
+@service_b_client_secret=gLC1qdcRajGZqC9gAth4Q6rChswXamrf
+
+#########################
+### Keycloak Examples ###
+#########################
+# @name service_a_token
+POST http://localhost:8080/realms/{{realm}}/protocol/openid-connect/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials&client_id={{service_a_client_id}}&client_secret={{service_a_client_secret}}
+
+###
+# @name service_b_token
+POST http://localhost:8080/realms/{{realm}}/protocol/openid-connect/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials&client_id={{service_b_client_id}}&client_secret={{service_b_client_secret}}
+
+###########################
+### Service A Endpoints ###
+### Port: 8001          ###
+###########################
+
+### Service A - Health Check
+GET http://localhost:8001/health
+
+### Service A - Aggregated Data (calls Service B)
+GET http://localhost:8001/v1/status/aggregated
+Authorization: Bearer {{service_a_token.response.body.access_token}}
+
+###########################
+### Service B Endpoints ###
+### Port: 8002          ###
+###########################
+### Service B - Health Check
+GET http://localhost:8002/health
+
+### Service B - Get Data with Authorization
+GET http://localhost:8002/v1/data
+Authorization: Bearer {{service_b_token.response.body.access_token}}

@@ -1,0 +1,7 @@
+.DS_Store
+.terraform
+.terraform.lock.hcl
+dist
+lib
+node_modules
+terraform.tfstate*

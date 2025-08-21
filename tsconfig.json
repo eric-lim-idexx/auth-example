@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    // Module & Interop
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+
+    // Target & Output
+    "target": "ES2020",
+
+    // Type Checking / Strictness
+    "strict": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "alwaysStrict": true,
+    "forceConsistentCasingInFileNames": true,
+
+    // Performance / Compatibility
+    "skipLibCheck": true
+  },
+  "exclude": ["node_modules"]
+}

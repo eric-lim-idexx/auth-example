@@ -1,0 +1,31 @@
+{
+  "name": "@workspace/service-a",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "start:dev": "tsx watch src/index.ts",
+    "test": "jest",
+    "lint": "eslint . --fix",
+    "lint:check": "eslint .",
+    "format": "prettier . --write --config ../../.prettierrc.json --ignore-path ../../.prettierignore",
+    "format:check": "prettier . --check --config ../../.prettierrc.json --ignore-path ../../.prettierignore"
+  },
+  "dependencies": {
+    "@fastify/cors": "catalog:api",
+    "@sinclair/typebox": "catalog:api",
+    "@workspace/common": "workspace:*",
+    "fastify": "catalog:api",
+    "http-status-codes": "catalog:api",
+    "neverthrow": "catalog:",
+    "axios": "catalog:",
+    "uuid": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "tsx": "catalog:",
+    "typescript": "catalog:"
+  }
+}
