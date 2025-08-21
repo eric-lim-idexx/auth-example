@@ -59,3 +59,11 @@ const { payload } = await jwtVerify(token, JWKS, {
 >
 > - More claims can be verified with [these options](https://github.com/panva/jose/blob/b4f8fb372689b5b38074aa45c9921a6a997a9142/docs/types/interfaces/JWTClaimVerificationOptions.md)
 > - JWKS can be obtained from https://cognito-idp.<Region>.amazonaws.com/<userPoolId>/.well-known/jwks.json
+
+### JWT for target service
+
+Before making a call to service B, [create a new token](https://github.com/eric-lim-idexx/auth-example/blob/e738672f56097f21c2632f1d42dc618d58836522/services/a/src/controllers/status.controller.ts#L49-L54).
+
+> [!WARNING]
+>
+> Don't hardcode `clientSecret` like in the example...
