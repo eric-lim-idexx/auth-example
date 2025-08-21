@@ -41,3 +41,21 @@ Run each service:
 pnpm --filter=@workspace/service-a start:dev
 pnpm --filter=@workspace/service-b start:dev
 ```
+
+### JOSE Usage
+
+Using [jose](https://www.npmjs.com/package/jose), verifying a JWT token looks like [this](https://github.com/eric-lim-idexx/auth-example/blob/04e12e65e198be8efbb434b3035c73a99451b46e/packages/common/src/auth/jwt.ts#L104-L107):
+
+```ts
+import { jwtVerify } from "jose";
+
+const { payload } = await jwtVerify(token, JWKS, {
+  issuer, // cognito or keycloak
+  audience, // who's this token issues for (e.g., service-a or service-b)
+});
+```
+
+> [!NOTE]
+>
+> - More claims can be verified with [these options](https://github.com/panva/jose/blob/b4f8fb372689b5b38074aa45c9921a6a997a9142/docs/types/interfaces/JWTClaimVerificationOptions.md)
+> - JWKS can be obtained from https://cognito-idp.<Region>.amazonaws.com/<userPoolId>/.well-known/jwks.json
